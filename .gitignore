@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# 環境変数（機密情報のため絶対にコミットしない）
+.env.local
+.env.*.local
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# OS
+.DS_Store
+Thumbs.db
+
+.vercel
