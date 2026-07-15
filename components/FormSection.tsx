@@ -37,9 +37,10 @@ const INITIAL: FormValues = {
   referrer: '',
 };
 
-// フォーム表示順と同じ並び（company_name / company_name_kana は任意入力のため除外）
+// フォーム表示順と同じ並び（company_name_kana は任意入力のため除外）
 const REQUIRED_TEXT_FIELDS = [
   'sei', 'mei', 'sei_kana', 'mei_kana',
+  'company_name',
   'birthdate', 'phone', 'postal_code', 'address',
   'building_name', 'residence_type',
   'bank_name', 'branch_name', 'account_number', 'account_holder',
@@ -195,17 +196,18 @@ export default function FormSection({ onConfirm, initialValues }: Props) {
             </Field>
           </div>
 
-          {/* ── 5-6. 屋号名・事業所名（任意） ── */}
+          {/* ── 5-6. 屋号名・事業所名 ── */}
           <SectionHeading>事業所情報</SectionHeading>
-          <Field label="屋号名・事業所名" note="個人申込の場合は未入力で問題ありません">
+          <Field label="屋号名・事業所名" required note="個人申込の場合は未入力で問題ありません">
             <input
               type="text"
               placeholder="〇〇事業所（仮）"
               value={values.company_name}
               onChange={setField('company_name')}
-              className={normalCls}
+              className={cls(values.company_name)}
               autoComplete="off"
             />
+            {submitted && !values.company_name && <FieldError />}
           </Field>
 
           <Field label="屋号名・事業所名フリガナ" note="個人申込の場合は未入力で問題ありません">
