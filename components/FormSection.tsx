@@ -37,10 +37,10 @@ const INITIAL: FormValues = {
   referrer: '',
 };
 
-// フォーム表示順と同じ並び（company_name_kana は任意入力のため除外）
+// フォーム表示順と同じ並び
 const REQUIRED_TEXT_FIELDS = [
   'sei', 'mei', 'sei_kana', 'mei_kana',
-  'company_name',
+  'company_name', 'company_name_kana',
   'birthdate', 'phone', 'postal_code', 'address',
   'building_name', 'residence_type',
   'bank_name', 'branch_name', 'account_number', 'account_holder',
@@ -210,15 +210,16 @@ export default function FormSection({ onConfirm, initialValues }: Props) {
             {submitted && !values.company_name && <FieldError />}
           </Field>
 
-          <Field label="屋号名・事業所名フリガナ" note="個人申込の場合は未入力で問題ありません">
+          <Field label="屋号名・事業所名フリガナ" required note="個人申込の場合は未入力で問題ありません">
             <input
               type="text"
               placeholder="マルマルジギョウショ"
               value={values.company_name_kana}
               onChange={setField('company_name_kana')}
-              className={normalCls}
+              className={cls(values.company_name_kana)}
               autoComplete="off"
             />
+            {submitted && !values.company_name_kana && <FieldError />}
           </Field>
 
           {/* ── 7-10. 生年月日・携帯番号・郵便番号・住所 ── */}
