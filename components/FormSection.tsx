@@ -198,7 +198,7 @@ export default function FormSection({ onConfirm, initialValues }: Props) {
 
           {/* ── 5-6. 屋号名・事業所名 ── */}
           <SectionHeading>事業所情報</SectionHeading>
-          <Field label="屋号名・事業所名" required note="個人申込の場合は未入力で問題ありません">
+          <Field label="屋号名・事業所名" required>
             <input
               type="text"
               placeholder="〇〇事業所（仮）"
@@ -210,7 +210,7 @@ export default function FormSection({ onConfirm, initialValues }: Props) {
             {submitted && !values.company_name && <FieldError />}
           </Field>
 
-          <Field label="屋号名・事業所名フリガナ" required note="個人申込の場合は未入力で問題ありません">
+          <Field label="屋号名・事業所名フリガナ" required>
             <input
               type="text"
               placeholder="マルマルジギョウショ"
