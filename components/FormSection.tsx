@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import type { FormValues, Intent } from '@/lib/types';
 import FaqSection, { FAQ_TOTAL } from './FaqSection';
 
@@ -448,7 +449,7 @@ export default function FormSection({ onConfirm, initialValues }: Props) {
 
           {/* 光回線サービス利用規約 */}
           <SectionHeading>光回線サービス利用規約</SectionHeading>
-          <div className="max-h-[220px] overflow-y-auto rounded-xl border border-gray-200 bg-gray-50 p-4 text-xs text-gray-600 leading-relaxed space-y-3">
+          <div className="max-h-[170px] overflow-y-auto rounded-xl border border-gray-200 bg-gray-50 p-4 text-xs text-gray-600 leading-relaxed space-y-3">
             <p>
               本サービスをご利用いただく前に、以下の内容をご確認ください。お申し込みいただいた時点で、本規約および個人情報の取扱いに同意いただいたものといたします。
             </p>
@@ -513,7 +514,7 @@ export default function FormSection({ onConfirm, initialValues }: Props) {
           </div>
 
           {/* 個人情報同意 */}
-          <div className="mt-2 bg-gray-50 border border-gray-200 rounded-xl p-4">
+          <div className="mt-2 bg-gray-50 border border-gray-200 rounded-xl p-4 space-y-2">
             <label className="flex items-start gap-3 cursor-pointer">
               <input
                 type="checkbox"
@@ -525,6 +526,12 @@ export default function FormSection({ onConfirm, initialValues }: Props) {
                 入力いただいた情報は、光回線案内、申込確認、キャッシュバック対応、公式LINE連絡の目的で利用されることに同意します
               </span>
             </label>
+            <Link
+              href="/privacy"
+              className="block pl-8 text-xs text-blue-700 underline underline-offset-2"
+            >
+              プライバシーポリシー
+            </Link>
           </div>
 
           {error && (
