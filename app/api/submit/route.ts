@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { sendApplicationConfirmationEmail } from '@/lib/mail/applicationConfirmation';
+
+// nodemailer は Node.js ランタイムが必要なため明示（Edge runtime非対応）
+export const runtime = 'nodejs';
 
 const s = (v: unknown): string => (v != null ? String(v) : '');
 const b = (v: unknown): boolean => v === true || v === 'true';
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const SHEET_SUBMIT   = '申込データ';
 const SHEET_THINKING = '検討中データ';
@@ -111,6 +116,37 @@ export async function POST(req: NextRequest) {
 
       const lineUrlReturned = showLine && !!lineUrl;
       console.log('[submit] success', JSON.stringify({ ...logCtx, gasSaved: true, lineUrlReturned }));
+
+      // 申込確認メール送信（失敗しても申込受付自体は成功として扱う）
+      const email = s(body.email);
+      if (EMAIL_PATTERN.test(email)) {
+        try {
+          await sendApplicationConfirmationEmail(
+            {
+              sei, mei, sei_kana: seiKana, mei_kana: meiKana,
+              company_name: s(body.company_name),
+              company_name_kana: s(body.company_name_kana),
+              birthdate: s(body.birthdate),
+              phone: s(body.phone),
+              email,
+              postal_code: s(body.postal_code),
+              address: s(body.address),
+              building_name: s(body.building_name),
+              residence_type: s(body.residence_type),
+              bank_name: s(body.bank_name),
+              branch_name: s(body.branch_name),
+              account_number: s(body.account_number),
+              account_holder: s(body.account_holder),
+              referrer: s(body.referrer),
+            },
+            new Date(),
+          );
+        } catch {
+          console.error('[submit] confirmation email failed', JSON.stringify({ submission_id: s(body.submission_id) }));
+        }
+      } else {
+        console.warn('[submit] confirmation email skipped: invalid email', JSON.stringify({ submission_id: s(body.submission_id) }));
+      }
     } catch (err) {
       console.error('[submit] timeout/network error', JSON.stringify({ ...logCtx, error: String(err), lineUrlReturned: false }));
       return NextResponse.json({ error: '送信タイムアウト。再度お試しください。' }, { status: 500 });
