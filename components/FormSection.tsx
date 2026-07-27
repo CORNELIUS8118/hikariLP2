@@ -447,12 +447,17 @@ export default function FormSection({ onConfirm, initialValues }: Props) {
             )}
           </div>
 
+          {/* 光回線サービス利用規約 */}
+          <SectionHeading>光回線サービス利用規約</SectionHeading>
+          <ScrollablePolicyBox>
+            <TermsContent />
+          </ScrollablePolicyBox>
+
           {/* プライバシーポリシー */}
           <SectionHeading>プライバシーポリシー</SectionHeading>
-          <div className="max-h-[160px] overflow-y-auto rounded-xl border border-gray-200 bg-white p-4 text-xs text-gray-600 leading-relaxed space-y-3 overscroll-contain [-webkit-overflow-scrolling:touch]">
+          <ScrollablePolicyBox>
             <PrivacyPolicyContent />
-          </div>
-
+          </ScrollablePolicyBox>
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-xl p-3 text-sm text-red-700 text-center">
               {error}
@@ -481,6 +486,81 @@ const normalCls =
 const errCls =
   'w-full px-4 py-3 rounded-xl border-2 border-red-400 text-base bg-red-50 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent placeholder:text-gray-400';
 
+function ScrollablePolicyBox({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="max-h-[170px] overflow-y-auto rounded-xl border border-gray-200 bg-white p-4 text-xs text-gray-600 leading-relaxed space-y-3 overscroll-contain [-webkit-overflow-scrolling:touch]">
+      {children}
+    </div>
+  );
+}
+
+function TermsContent() {
+  return (
+    <>
+      <p>
+        本サービスをご利用いただく前に、以下の内容をご確認ください。お申し込みいただいた時点で、本規約および個人情報の取扱いに同意いただいたものといたします。
+      </p>
+
+      <div>
+        <p className="font-bold text-gray-700 mb-1">第1条（サービス内容）</p>
+        <p>1. 当社は、お客様に対し、光回線およびインターネット関連サービスのお申し込み取次ぎならびに契約手続きのサポートを行います。</p>
+        <p>2. 光回線の提供、開通工事、保守、障害対応等については、各通信事業者が実施するものとします。</p>
+      </div>
+
+      <div>
+        <p className="font-bold text-gray-700 mb-1">第2条（お申し込み）</p>
+        <p>1. お申し込み内容に不備または誤りがある場合、お手続きを完了できない場合があります。</p>
+        <p>2. 通信事業者による審査の結果、お申し込みをお受けできない場合があります。</p>
+        <p>3. 提供エリア、設備状況その他の理由により、サービスをご利用いただけない場合があります。</p>
+      </div>
+
+      <div>
+        <p className="font-bold text-gray-700 mb-1">第3条（工事について）</p>
+        <p>1. 工事内容により、お客様または代理人様の立ち会いが必要となる場合があります。</p>
+        <p>2. 建物設備や配線状況等により、追加工事または別途費用が発生する場合があります。</p>
+        <p>3. 工事日程は通信事業者との調整のうえ決定されます。</p>
+      </div>
+
+      <div>
+        <p className="font-bold text-gray-700 mb-1">第4条（料金）</p>
+        <p>1. 月額料金、工事費、契約事務手数料、オプション料金等は、ご契約いただく通信事業者の定める料金体系に従います。</p>
+        <p>2. キャンペーン、割引、キャッシュバックには、それぞれ適用条件があります。</p>
+      </div>
+
+      <div>
+        <p className="font-bold text-gray-700 mb-1">第5条（キャッシュバック）</p>
+        <p>1. キャッシュバック対象となるお客様は、当社が指定する必要書類（請求明細等）をご提出いただく必要があります。</p>
+        <p>2. 必要書類の確認後、当社所定の期間内にご指定の口座へお振込みいたします。</p>
+        <p>3. 必要書類の未提出、記載不備、期限超過、または適用条件を満たさない場合は、キャッシュバック対象外となる場合があります。</p>
+      </div>
+
+      <div>
+        <p className="font-bold text-gray-700 mb-1">第6条（解約について）</p>
+        <p>キャンペーン対象のお客様が対象期間中に通信事業者所定の解約金等を負担された場合は、当社所定の条件を満たした場合に限り、対象費用をキャッシュバックいたします。</p>
+      </div>
+
+      <div>
+        <p className="font-bold text-gray-700 mb-1">第7条（個人情報の取扱い）</p>
+        <p>1. 当社は、お客様から取得した氏名、住所、電話番号、メールアドレス、銀行口座情報その他のお申し込み情報を、お申し込み手続き、本人確認、サービス提供、アフターサポート、お問い合わせ対応および各種ご案内の目的で利用いたします。</p>
+        <p>2. お申し込み手続きに必要な範囲において、通信事業者その他業務委託先へ情報を提供する場合があります。</p>
+        <p>3. 法令に基づく場合を除き、お客様の同意なく第三者へ個人情報を提供することはありません。</p>
+        <p>4. 当社は、お客様の個人情報を適切に管理し、不正アクセス、漏えい、滅失または毀損の防止に努めます。</p>
+      </div>
+
+      <div>
+        <p className="font-bold text-gray-700 mb-1">第8条（免責事項）</p>
+        <p>1. 天災、通信障害、設備障害、通信事業者の都合その他やむを得ない事由により、工事日程またはサービス開始日が変更となる場合があります。</p>
+        <p>2. 通信事業者が提供するサービス内容、料金、キャンペーン等の変更について、当社は責任を負いかねます。</p>
+        <p>3. 通信事業者の設備障害、サービス停止その他当社の責めに帰すことのできない事由により生じた損害について、当社は責任を負いかねます。</p>
+      </div>
+
+      <div>
+        <p className="font-bold text-gray-700 mb-1">第9条（規約の変更）</p>
+        <p>当社は、法令の改正、サービス内容の変更その他必要がある場合、本規約を変更することがあります。変更後の規約は、本サービス上または当社が適当と判断する方法で公表した時点から効力を生じるものとします。</p>
+      </div>
+    </>
+  );
+}
 function PrivacyPolicyContent() {
   return (
     <>
