@@ -446,6 +446,34 @@ export default function FormSection({ onConfirm, initialValues }: Props) {
             )}
           </div>
 
+          {/* 個人情報の取り扱い */}
+          <SectionHeading>個人情報の取り扱い</SectionHeading>
+          <div className="max-h-[220px] overflow-y-auto rounded-xl border border-gray-200 bg-gray-50 p-4 text-xs text-gray-600 leading-relaxed space-y-3">
+            <p>
+              合同会社ELEVEN（以下「当社」といいます）は、本申込フォームでご入力いただく個人情報を、以下のとおり取り扱います。
+            </p>
+            <div>
+              <p className="font-bold text-gray-700 mb-1">1. 取得する情報</p>
+              <p>お名前、フリガナ、生年月日、携帯電話番号、メールアドレス、ご住所、屋号名・事業所名、口座情報、その他本フォームにご入力いただく情報。</p>
+            </div>
+            <div>
+              <p className="font-bold text-gray-700 mb-1">2. 利用目的</p>
+              <p>光回線サービスのご案内、お申込み内容の確認、キャッシュバック対応、公式LINEでのご連絡、その他本キャンペーンの運営に必要な範囲での利用。</p>
+            </div>
+            <div>
+              <p className="font-bold text-gray-700 mb-1">3. 第三者提供</p>
+              <p>ご案内する光回線サービスの提供事業者への申込手続きに必要な範囲、または法令に基づく場合を除き、ご本人の同意なく第三者に提供することはありません。</p>
+            </div>
+            <div>
+              <p className="font-bold text-gray-700 mb-1">4. 管理体制</p>
+              <p>取得した個人情報は、当社にて適切な安全管理措置を講じたうえで管理し、利用目的の達成に必要な期間保管します。</p>
+            </div>
+            <div>
+              <p className="font-bold text-gray-700 mb-1">5. お問い合わせ窓口</p>
+              <p>個人情報の取り扱いに関するお問い合わせは、合同会社ELEVENまでご連絡ください。</p>
+            </div>
+          </div>
+
           {/* 個人情報同意 */}
           <div className="mt-2 bg-gray-50 border border-gray-200 rounded-xl p-4">
             <label className="flex items-start gap-3 cursor-pointer">
